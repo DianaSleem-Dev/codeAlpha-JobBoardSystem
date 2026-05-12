@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth.middleware";
+import { JobApplicationController } from "../controllers/job-application.controller";
+const router = Router();
+router.post("/apply", authMiddleware, JobApplicationController.applyToJob);
+router.get("/my-applications", authMiddleware, JobApplicationController.getMyApplications);
+router.get("/job/:jobId/applications", authMiddleware, JobApplicationController.getApplicationsForJob);
+router.get("/applicants", authMiddleware, JobApplicationController.getApplicantsForCompany);
+router.put("/:applicationId/status", authMiddleware, JobApplicationController.updateApplicationStatus);
+export default router;
